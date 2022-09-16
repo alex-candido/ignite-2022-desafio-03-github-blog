@@ -7,7 +7,9 @@ const DefaultLayout: React.FC = () => {
   return (
     <LayoutContainer>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </LayoutContainer>
   );
 };
