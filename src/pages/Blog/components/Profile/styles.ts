@@ -18,3 +18,9 @@ export const ProfilePicture = styled.img`
   border-radius: 8px;
   object-fit: cover;
 `;
+
+export const ProfileDetails = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
