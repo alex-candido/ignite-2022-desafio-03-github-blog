@@ -3,7 +3,7 @@ import { PostContainer } from './styles';
 
 const Post: React.FC = () => {
   return (
-    <PostContainer>
+    <PostContainer to="/post/1">
       <div>
         <strong>JavaScript data types and data structures</strong>
         <span>Há 1 dia</span>
