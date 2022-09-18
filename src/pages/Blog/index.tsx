@@ -27,11 +27,13 @@ const Blog: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log(posts);
+
   const getPosts = useCallback(async (query = '') => {
     try {
       setIsLoading(true);
       const response = await api.get(
-        `/search/issues?q=${query}%20label:published%20repo:${username}/${repoName}`,
+        `/search/issues?q=${query}%20repo:published%20repo:${username}/${repoName}`,
       );
 
       setPosts(response.data.items);
