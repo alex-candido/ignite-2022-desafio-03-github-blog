@@ -26,14 +26,13 @@ const Blog: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getposts = useCallback(async (query = '') => {
+  const getPosts = useCallback(async (query = '') => {
     try {
       setIsLoading(true);
       const response = await api.get(
         `/search/issues?q=${query}%20label:published%20repo:${username}/${repoName}`,
       );
 
-      console.log(response.data);
       setPosts(response.data.items);
     } finally {
       setIsLoading(false);
@@ -41,13 +40,13 @@ const Blog: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    getposts();
-  }, [getposts]);
+    getPosts();
+  }, [getPosts]);
 
   return (
     <>
       <Profile />
-      <SearchInput />
+      <SearchInput postsLength={posts.length} getPosts={getPosts} />
       <PostsListContainer>
         {posts.map(post => (
           <Post key={post.number} post={post} />
