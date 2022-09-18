@@ -6,18 +6,17 @@ Github Blog é uma aplicação web de um Blog Pessoal, tendo como aplicabilidade
 
 Suas funcionalidade são, Listagem do seu perfil com imagem, número de seguidores, nome e outras informações disponíveis pela API do GitHub, listar e filtrar todas as issues do repositório com um pequeno resumo do conteúdo dela, criar uma página para exibir um post (issue) completo.
 
-Suas abordagens envolve padronização de projetos React, Styled Components, Componetização, Typescript,  React Router Dom, React Hook Form, Axios, API do Github, além de Ferramentas como ESLint, Prettier e EditorConfig. Acesse [Coffee Delivery](https://github-blog-challenge-03.netlify.app/).
+Suas abordagens envolve padronização de projetos React, Styled Components, Componetização, Typescript, React Router Dom, React Hook Form, Axios, API do Github, além de Ferramentas como ESLint, Prettier e EditorConfig. Acesse [Coffee Delivery](https://github-blog-challenge-03.netlify.app/).
 
 ## 🚀 Abordagens
 
 - Styled Components
 - Componetização
-- Local Storage
 - Typescript
-- Context API
 - React Router Dom
 - React Hook Form
-- Validações de formulário com Zod
+- Axios
+- API do Github
 - ESLint, Prettier e EditorConfig
 
 ## 📌 Foi utilizado
