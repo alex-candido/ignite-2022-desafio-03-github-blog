@@ -26,6 +26,10 @@
         "prettier"
     ],
     "rules": {
+        "react/no-children-prop": "off",
+        "react/no-unstable-nested-components": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": ["error"],
         // "prettier/prettier":  "off",

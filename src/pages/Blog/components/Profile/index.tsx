@@ -1,41 +1,84 @@
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ExternalLink from '../../../../components/ExternalLink';
+import Spinner from '../../../../components/Spinner';
+import { ENV_VARIABLES } from '../../../../env/variables';
+import { api } from '../../../../lib';
 import { ProfileContainer, ProfileDetails, ProfilePicture } from './styles';
 
+const username = ENV_VARIABLES.GITHUB_USERNAME;
+
+interface ProfileData {
+  login: string;
+  bio: string;
+  avatar_url: string;
+  html_url: string;
+  name: string;
+  company?: string;
+  followers: number;
+}
+
 const Profile: React.FC = () => {
+  const [profileData, setProfileData] = useState<ProfileData>(
+    {} as ProfileData,
+  );
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getProfileData = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const response = await api.get(`/users/${username}`);
+
+      setProfileData(response.data);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    getProfileData();
+  }, [getProfileData]);
+
   return (
     <ProfileContainer>
-      <ProfilePicture src="https://github.com/alex-candido.png" />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <ProfilePicture src={profileData.avatar_url} />
 
-      <ProfileDetails>
-        <header>
-          <h1>Alex Candido</h1>
+          <ProfileDetails>
+            <header>
+              <h1>{profileData.name}</h1>
 
-          <ExternalLink text="Github" href="#" />
-        </header>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
-        <ul>
-          <li>
-            <FontAwesomeIcon icon={faGithub} />
-            alex-candido
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faBuilding} />
-            Fortaleza
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faUserGroup} />
-            123 seguidores
-          </li>
-        </ul>
-      </ProfileDetails>
+              <ExternalLink
+                text="Github"
+                href={profileData.html_url}
+                target="_blank"
+              />
+            </header>
+            <p>{profileData.bio}</p>
+            <ul>
+              <li>
+                <FontAwesomeIcon icon={faGithub} />
+                {profileData.login}
+              </li>
+              {profileData?.company && (
+                <li>
+                  <FontAwesomeIcon icon={faBuilding} />
+                  {profileData.company}
+                </li>
+              )}
+              <li>
+                <FontAwesomeIcon icon={faUserGroup} />
+                {profileData.followers} seguidores
+              </li>
+            </ul>
+          </ProfileDetails>
+        </>
+      )}
     </ProfileContainer>
   );
 };
