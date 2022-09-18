@@ -2,7 +2,7 @@
 
 # Ignite 2022 - Github Blog
 
-Github Blog é uma aplicação web de um Blog Pessoal, tendo como aplicabilidade utilizar da API do GitHub para buscar issues de um repositório, dados do seu perfil e exibir elas como um blog.
+Github Blog é uma aplicação web de um Blog Pessoal, tendo como aplicabilidade a utilização da API do GitHub para buscar issues de um repositório, dados do seu perfil e exibir elas como um blog.
 
 Suas funcionalidade são, Listagem do seu perfil com imagem, número de seguidores, nome e outras informações disponíveis pela API do GitHub, listar e filtrar todas as issues do repositório com um pequeno resumo do conteúdo dela, criar uma página para exibir um post (issue) completo.
 
