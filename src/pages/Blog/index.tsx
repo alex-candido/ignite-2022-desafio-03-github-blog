@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import Spinner from '../../components/Spinner';
 import { ENV_VARIABLES } from '../../env/variables';
 
 import { api } from '../../lib';
@@ -47,11 +48,15 @@ const Blog: React.FC = () => {
     <>
       <Profile />
       <SearchInput postsLength={posts.length} getPosts={getPosts} />
-      <PostsListContainer>
-        {posts.map(post => (
-          <Post key={post.number} post={post} />
-        ))}
-      </PostsListContainer>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <PostsListContainer>
+          {posts.map(post => (
+            <Post key={post.number} post={post} />
+          ))}
+        </PostsListContainer>
+      )}
     </>
   );
 };
