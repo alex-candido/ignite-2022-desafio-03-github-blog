@@ -27,8 +27,6 @@ const Blog: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(posts);
-
   const getPosts = useCallback(async (query = '') => {
     try {
       setIsLoading(true);
